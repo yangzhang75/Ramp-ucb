@@ -99,7 +99,7 @@ export function VsAxePage() {
       <div className="rounded-2xl border border-[var(--color-border)] bg-[var(--color-card)] px-6 py-10 text-center md:px-10">
         <p className="text-2xl font-bold leading-snug tracking-tight md:text-4xl lg:text-5xl">
           Same pages.{" "}
-          <span className="text-zinc-500">axe: {axeCount} issues found.</span>
+          <span className="text-red-400/80">axe: {axeCount} issues found.</span>
           <span className="mx-2 text-zinc-600">·</span>
           <span className="text-[var(--color-primary)]">
             Ramp: {totalIssues} issues axe can&apos;t see.
@@ -111,15 +111,15 @@ export function VsAxePage() {
       </div>
 
       <div className="grid overflow-hidden rounded-2xl border border-[var(--color-border)] lg:grid-cols-2 lg:divide-x lg:divide-[var(--color-border)]">
-        <section className="bg-zinc-950/80 p-6 md:p-8 lg:p-10">
-          <p className="text-sm uppercase tracking-[0.2em] text-zinc-500">
+        <section className="bg-red-950/60 p-6 md:p-8 lg:p-10">
+          <p className="text-sm uppercase tracking-[0.2em] text-red-400/60">
             axe-core (industry standard)
           </p>
           <div className="mt-8 flex flex-col items-center justify-center py-10 text-center">
-            <CheckCircle2 className="h-20 w-20 text-green-500/90" strokeWidth={1.5} />
-            <p className="mt-6 text-7xl font-bold text-green-400 md:text-8xl">{axeCount}</p>
-            <p className="mt-2 text-xl text-zinc-400">issues across {data.totals.pages} pages</p>
-            <p className="mt-6 max-w-sm text-lg text-zinc-500">
+            <CheckCircle2 className="h-20 w-20 text-red-600/60" strokeWidth={1.5} />
+            <p className="mt-6 text-7xl font-bold text-red-500/70 md:text-8xl">{axeCount}</p>
+            <p className="mt-2 text-xl text-red-300/50">issues across {data.totals.pages} pages</p>
+            <p className="mt-6 max-w-sm text-lg text-red-300/40">
               Every page passes — axe considers these sites perfect.
             </p>
           </div>
