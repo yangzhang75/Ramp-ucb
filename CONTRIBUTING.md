@@ -1,7 +1,7 @@
 # Contributing to Ramp
 
 Ramp is a pnpm + TypeScript (ESM) monorepo. This guide keeps a fast-moving
-hackathon team from stepping on each other.
+from-scratch team from stepping on each other.
 
 ## Layout
 
