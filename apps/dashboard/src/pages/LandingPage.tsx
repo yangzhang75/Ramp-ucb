@@ -88,6 +88,22 @@ export function LandingPage({ onExploreDemo }: { onExploreDemo: () => void }) {
         </div>
       </section>
 
+      <section className="border-b border-[var(--color-border)] bg-[var(--color-card)]/30">
+        <div className="grid grid-cols-2 divide-x divide-[var(--color-border)] md:grid-cols-4">
+          {[
+            { value: "5", label: "real PRs opened" },
+            { value: "+14 pt", label: "avg score jump" },
+            { value: "51", label: "benchmark tasks" },
+            { value: "12", label: "semantic issues axe can't see" },
+          ].map(({ value, label }) => (
+            <div key={label} className="px-6 py-6 text-center">
+              <p className="text-2xl font-bold text-[var(--color-primary)] sm:text-3xl">{value}</p>
+              <p className="mt-1 text-xs text-[var(--color-muted-foreground)]">{label}</p>
+            </div>
+          ))}
+        </div>
+      </section>
+
       <section className="border-b border-[var(--color-border)] px-6 py-16 sm:py-20">
         <SectionLabel>The problem</SectionLabel>
         <div className="grid gap-6 md:grid-cols-2">
@@ -153,7 +169,7 @@ export function LandingPage({ onExploreDemo }: { onExploreDemo: () => void }) {
         <h3 className="mb-4 text-2xl font-bold sm:text-3xl">Real PRs on real repos</h3>
         <p className="mb-10 max-w-2xl text-[var(--color-muted-foreground)]">
           Fork → audit → fix → verify → open PR. Each card links to a live pull request on
-          yangzhang75&apos;s fork.
+          Ramp&apos;s fork.
         </p>
         <div className="grid gap-6 md:grid-cols-3">
           {prCards.map((card) => (
