@@ -562,7 +562,7 @@ Examples:
 
 ## MVP Scope
 
-For the hackathon MVP, Ramp should support:
+For the MVP, Ramp should support:
 
 * React or Next.js frontend repositories
 * Local app scanning using Playwright and axe-core
