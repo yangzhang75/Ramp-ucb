@@ -37,3 +37,6 @@ screenshots/
 
 # Temp workspaces used during fix loop
 .ramp-work/
+
+# Nested source repo (not part of this repo)
+Ramp/
