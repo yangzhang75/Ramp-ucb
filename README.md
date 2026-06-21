@@ -23,8 +23,8 @@ is blind to (alt text that just says `"image"`, links that say `"click here"`).
 
 | Repo | Fix | Score | PR |
 |---|---|---|---|
-| `bad.html` (fixture) | alt + contrast + button names | **60 → 96** | [yangzhang75/Ramp#7](https://github.com/yangzhang75/Ramp/pull/7) |
-| semantic (fixture) | meaningless alt/link/button names axe passes | semantic 5 → 0 | [yangzhang75/Ramp#10](https://github.com/yangzhang75/Ramp/pull/10) |
+| `bad.html` (fixture) | alt + contrast + button names | **60 → 96** | [yangzhang75/Ramp-ucb#7](https://github.com/yangzhang75/Ramp-ucb/pull/7) |
+| semantic (fixture) | meaningless alt/link/button names axe passes | semantic 5 → 0 | [yangzhang75/Ramp-ucb#10](https://github.com/yangzhang75/Ramp-ucb/pull/10) |
 | `aigov-ops…` (real OSS) | landmarks + skip link + `<main>` | **92 → 100** | [PR#1](https://github.com/yangzhang75/aigov-ops-open-source-vendor-rfi-rapp-johnston-june-2026/pull/1) |
 | `caelaria` (real OSS) | unlabeled `<select>` controls | **84 → 92** | [PR#1](https://github.com/yangzhang75/caelaria/pull/1) |
 | `Whatifarcade` (real OSS) | form label + `<main>` landmark | **96 → 100** | [PR#1](https://github.com/yangzhang75/Whatifarcade/pull/1) |
