@@ -309,7 +309,6 @@ Minor issues: 2
 
 The score should be used for comparison, not as a claim of full WCAG compliance.
 
-
 ---
 
 ### Step 5: Fix Planning
@@ -489,3 +488,220 @@ The PR should include enough evidence for a developer to review quickly.
 
 ---
 
+## Agent Harness Behavior
+
+Ramp should behave like an accessibility engineer, not a generic code assistant.
+
+Before editing code, Ramp must:
+
+1. Read the WCAG rule connected to the violation.
+2. Inspect the affected DOM node.
+3. Locate the likely source component.
+4. Choose the smallest safe fix.
+5. Apply the patch.
+6. Re-run validation.
+7. Report before and after results.
+
+Ramp should use structured evidence instead of guessing.
+
+---
+
+## Safe Fix Rules
+
+Ramp may automatically fix:
+
+* Missing `alt` attributes when image purpose is clear
+* Empty `alt=""` for clearly decorative images
+* Missing form labels when placeholder or nearby text provides label intent
+* Missing `aria-label` for icon buttons when icon purpose is clear
+* Missing semantic landmarks
+* Simple heading order issues
+* Simple color contrast issues when design impact is low
+* Missing focus style when style system is clear
+
+Ramp should require human review for:
+
+* Ambiguous image descriptions
+* Complex keyboard interaction patterns
+* Focus traps in modals or custom widgets
+* Major layout changes
+* Product-sensitive wording
+* Design system changes that affect many components
+* Cases where the accessible name cannot be inferred confidently
+
+Example human review output:
+
+```json
+{
+  "status": "needs_human_review",
+  "issue": "ambiguous_image_alt_text",
+  "reason": "Image content is ambiguous and cannot be safely described from context",
+  "suggested_review_question": "What information should this image communicate to screen reader users?"
+}
+```
+
+---
+
+## Common WCAG Mapping
+
+Ramp should connect issues to relevant WCAG rules when possible.
+
+Examples:
+
+| Issue                          | WCAG Rule                    |
+| ------------------------------ | ---------------------------- |
+| Missing image alt text         | 1.1.1 Non-text Content       |
+| Missing form label             | 1.3.1 Info and Relationships |
+| Low color contrast             | 1.4.3 Contrast Minimum       |
+| Keyboard inaccessible control  | 2.1.1 Keyboard               |
+| Missing focus indicator        | 2.4.7 Focus Visible          |
+| Incorrect heading order        | 2.4.6 Headings and Labels    |
+| Button missing accessible name | 4.1.2 Name, Role, Value      |
+
+---
+
+## MVP Scope
+
+For the hackathon MVP, Ramp should support:
+
+* React or Next.js frontend repositories
+* Local app scanning using Playwright and axe-core
+* 3 to 5 common accessibility issue types
+* Before and after accessibility score
+* Code patch generation
+* Validation after repair
+* GitHub PR creation or simulated PR diff
+* Dashboard showing issue list, severity, score improvement, and PR summary
+
+MVP issue types:
+
+1. Missing image alt text
+2. Missing form labels
+3. Icon buttons without accessible names
+4. Low contrast text or buttons
+5. Missing landmarks or heading issues
+
+The MVP does not need to fix every WCAG issue. It should focus on common, high-impact, automatically verifiable problems.
+
+---
+
+## Non-Goals
+
+Ramp should not:
+
+* Claim complete WCAG compliance from automated checks alone.
+* Replace manual accessibility audits.
+* Automatically make high-risk design decisions.
+* Rewrite the entire frontend.
+* Break existing behavior to satisfy a scanner.
+* Add meaningless labels such as `aria-label="button"`.
+* Hide important content from users.
+* Treat accessibility as only a score.
+
+---
+
+## Demo Flow
+
+A recommended hackathon demo:
+
+1. Open a sample React app with intentional accessibility issues.
+2. Run Ramp on the repository.
+3. Show before score, such as `45/100`.
+4. Show detected violations:
+
+   * Missing labels
+   * Missing alt text
+   * Icon buttons without accessible names
+   * Low contrast CTA
+   * Missing `main` landmark
+5. Click **Generate Fix PR**.
+6. Ramp applies code changes.
+7. Ramp reruns the audit.
+8. Show after score, such as `86/100`.
+9. Show reduced violations.
+10. Open the generated PR or simulated PR diff.
+
+The key demo moment:
+
+```text
+Before: accessibility report with violations.
+After: merge-ready pull request with verified fixes.
+```
+
+---
+
+## Example PR Summary
+
+```markdown
+# Improve accessibility compliance with Ramp
+
+## Before
+
+Accessibility score: 45/100  
+axe violations: 15
+
+## After
+
+Accessibility score: 86/100  
+axe violations: 4
+
+## Fixes Included
+
+- Added alt text to 5 informative images
+- Added empty alt text to 2 decorative images
+- Added labels to 3 form inputs
+- Added accessible names to 4 icon buttons
+- Added a main landmark to the dashboard page
+- Improved contrast for the primary CTA
+
+## Validation
+
+- Build passed
+- Lint passed
+- axe scan rerun successfully
+- No page crash detected
+
+## Remaining Work
+
+Some remaining issues require human review, including complex keyboard behavior and ambiguous image descriptions.
+```
+
+---
+
+## Evaluation Metrics
+
+Ramp should be evaluated using measurable outcomes:
+
+* Accessibility score before and after
+* Number of violations before and after
+* Percentage reduction in critical and serious violations
+* Number of successful automatic fixes
+* Number of fixes requiring human review
+* Build/lint/test pass rate after modifications
+* Comparison of raw model vs Ramp harness performance
+
+Example benchmark comparison:
+
+```text
+Raw LLM:
+Detected 6/15 issues
+Fixed 3/15 issues
+Final score: 61/100
+
+Ramp Harness:
+Detected 13/15 issues
+Fixed 10/15 issues
+Final score: 86/100
+```
+
+---
+
+## Pitch
+
+Ramp builds digital curb cuts for the web.
+
+Accessibility tools already tell developers what is broken, but reports do not make websites usable. Ramp closes the loop by auditing a frontend repo, scoring WCAG compliance, generating safe code fixes, validating the result, and opening a merge-ready pull request.
+
+We do not just report accessibility problems.
+
+We submit fixes.
